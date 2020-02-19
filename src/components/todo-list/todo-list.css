@@ -1,0 +1,18 @@
+.todoListDiv ul {
+  list-style: none;
+}
+
+.list {
+  width: 90%;
+  margin: auto;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.noTasks {
+  color: #e2f3f5;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}

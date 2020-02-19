@@ -1,0 +1,59 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.taskInput {
+  width: 300px;
+  min-width: 250px;
+  padding: 15px 10px 10px 20px;
+  margin-right: 10px;
+  font-family: 'Josefin Sans', serif;
+  font-size: 15px;
+  color: #e2f3f5;
+  background-color: #0e153a;
+  border: 1px solid #e2f3f5;
+  outline: none;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.addTaskBtn {
+  min-width: 60px;
+  background-color: #17b978;
+  color: #fff;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+}
+
+.clearAllBtn {
+  min-width: 80px;
+  background-color: #fc5185;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+}
+
+.button {
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.mainButtons {
+  display: flex;
+}
