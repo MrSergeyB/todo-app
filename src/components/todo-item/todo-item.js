@@ -4,21 +4,12 @@ import './todo-item.css';
 
 const TodoItem = ({task, id, completed}) => {
   const todoContext = useContext(TodoContext);
-  const {removeTodo, editTodo} = todoContext;
-  const [important, setImporant] = useState(false);
+  const {removeTodo, editTodo, toggleImportant} = todoContext;
   const [done, setDone] = useState(false);
 
-  const style = {
-    color: important ? '#a7ff83' : 'white',
-    fontWeight: important ? 'bold' : 'normal'
-  };
-
-  const style2 = {
-    textDecoration: done ? 'line-through' : null
-  };
   return (
     <Fragment>
-      <li className='listItem' style={style2}>
+      <li className='listItem'>
         <span
           onClick={() => {
             setDone(!done);
@@ -43,7 +34,7 @@ const TodoItem = ({task, id, completed}) => {
           </button>
           <button
             className='btn btnOutlinePrimary'
-            onClick={() => setImporant(!important)}
+            onClick={() => toggleImportant(id)}
             title='mark important'
           >
             <i class='fas fa-exclamation'></i>

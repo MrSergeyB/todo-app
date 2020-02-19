@@ -1,5 +1,5 @@
 export const ADD_TODO = 'ADD_TODOS';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const TOGGLE_IMPORTANT = 'TOGGLE_IMPORTANT';
 export const REMOVE_TODO = 'TOGGLE_TODO';
 export const CLEAR_ALL = 'TOGGLE_TODO';
 export const EDIT_TODO = 'TOGGLE_TODO';

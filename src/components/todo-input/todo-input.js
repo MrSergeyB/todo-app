@@ -23,7 +23,7 @@ const TodoInput = () => {
           placeholder='What needs to be done?'
           type='text'
           value={todo}
-          autofocus='autofocus'
+          autoFocus='autofocus'
           onChange={e => setTodo(e.target.value)}
         ></input>
         <div className='mainButtons'>

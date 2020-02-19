@@ -6,7 +6,7 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   EDIT_TODO,
-  TOGGLE_TODO,
+  TOGGLE_IMPORTANT,
   SET_ALERT,
   REMOVE_ALERT,
   CLEAR_ALL
@@ -15,8 +15,8 @@ import {
 const TodoState = props => {
   const initialState = {
     list: [
-      {task: 'Finish todo  app', completed: false, id: 1},
-      {task: 'Clean the house', completed: false, id: 2}
+      {task: 'Finish todo  app', completed: false, important: false, id: 1},
+      {task: 'Clean house', completed: false, important: false, id: 2}
     ]
   };
 
@@ -38,17 +38,24 @@ const TodoState = props => {
 
   //Edit todo
   const editTodo = id => {
-    let newArray = state.list.filter(task => task.id !== id);
+    let objectIndex = state.list.findIndex(task => task.id === id);
 
-    dispatch({type: EDIT_TODO, payload: newArray});
+    dispatch({type: EDIT_TODO, payload: objectIndex});
   };
 
-  //Edit todo
+  //Toggle important
+  const toggleImportant = id => {
+    let index = state.list.findIndex(e => e.id === id);
+    let objectToggle = state.list[index];
+
+    dispatch({type: EDIT_TODO, payload: !objectToggle.important});
+  };
+
+  //Clear all
+
   const clearAll = () => {
     dispatch({type: CLEAR_ALL, payload: []});
   };
-
-  //Show alert
 
   //Remove alert
 
@@ -59,7 +66,8 @@ const TodoState = props => {
         alert: state.alert,
         addTodo,
         removeTodo,
-        clearAll
+        clearAll,
+        toggleImportant
       }}
     >
       {props.children}

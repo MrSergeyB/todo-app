@@ -3,7 +3,7 @@ import {
   ADD_TODOS,
   REMOVE_TODO,
   CLEAR_ALL,
-  TOGGLE_TODO,
+  TOGGLE_IMPORTANT,
   SET_ALERT,
   REMOVE_ALERT,
   ADD_TODO
@@ -15,9 +15,10 @@ export default (state, action) => {
       return {
         list: [
           ...state.list,
-          {task: action.payload, completed: false, id: uuid()}
+          {task: action.payload, completed: false, important: false, id: uuid()}
         ]
       };
+
     case REMOVE_TODO:
       return {
         list: [...action.payload]
@@ -25,6 +26,11 @@ export default (state, action) => {
     case CLEAR_ALL:
       return {
         list: [...action.payload]
+      };
+
+    case TOGGLE_IMPORTANT:
+      return {
+        list: [...state.list, (important: !action.payload)]
       };
     default:
       return state;
