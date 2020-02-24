@@ -12,13 +12,8 @@ const TodoList = () => {
     <div className='todoListDiv'>
       {list.length ? (
         <ul className='list'>
-          {list.map((todo, id) => (
-            <TodoItem
-              key={id}
-              task={todo.task}
-              completed={todo.completed}
-              id={todo.id}
-            />
+          {list.map(({todo, important, id}) => (
+            <TodoItem key={id} todo={todo} important={important} id={id} />
           ))}
         </ul>
       ) : (

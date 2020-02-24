@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useEffect} from 'react';
 import TodoContext from './todo-context';
 import TodoReducer from './todo-reducer';
 
@@ -7,20 +7,28 @@ import {
   REMOVE_TODO,
   EDIT_TODO,
   TOGGLE_IMPORTANT,
-  SET_ALERT,
-  REMOVE_ALERT,
-  CLEAR_ALL
+  CLEAR_ALL,
+  CLEAR_ALERT,
+  ADD_EDITED_TODO,
+  SET_ALERT
 } from './types.js';
 
 const TodoState = props => {
   const initialState = {
-    list: [
-      {task: 'Finish todo  app', completed: false, important: false, id: 1},
-      {task: 'Clean house', completed: false, important: false, id: 2}
-    ]
+    alert: '',
+    editMode: false,
+    editItem: {},
+    list: []
   };
 
-  const [state, dispatch] = useReducer(TodoReducer, initialState);
+  const [state, dispatch] = useReducer(TodoReducer, initialState, () => {
+    const localData = localStorage.getItem('state');
+    return localData ? JSON.parse(localData) : initialState;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state));
+  }, [state]);
 
   //Add todo
 
@@ -31,24 +39,25 @@ const TodoState = props => {
   //Remove todo
 
   const removeTodo = id => {
-    let newArray = state.list.filter(task => task.id !== id);
+    let newArray = state.list.filter(todo => todo.id !== id);
 
     dispatch({type: REMOVE_TODO, payload: newArray});
   };
 
   //Edit todo
   const editTodo = id => {
-    let objectIndex = state.list.findIndex(task => task.id === id);
+    let newTask = state.list.filter(todo => todo.id === id);
+    dispatch({type: EDIT_TODO, payload: newTask[0]});
+  };
 
-    dispatch({type: EDIT_TODO, payload: objectIndex});
+  //Add edited todo
+  const addEditedTodo = editedTask => {
+    dispatch({type: ADD_EDITED_TODO, payload: editedTask});
   };
 
   //Toggle important
   const toggleImportant = id => {
-    let index = state.list.findIndex(e => e.id === id);
-    let objectToggle = state.list[index];
-
-    dispatch({type: EDIT_TODO, payload: !objectToggle.important});
+    dispatch({type: TOGGLE_IMPORTANT, id: id});
   };
 
   //Clear all
@@ -57,17 +66,33 @@ const TodoState = props => {
     dispatch({type: CLEAR_ALL, payload: []});
   };
 
-  //Remove alert
+  //Set alert
+
+  const setAlert = () => {
+    dispatch({type: SET_ALERT, payload: 'Input field should not be empty'});
+  };
+
+  //Clear alert
+
+  const clearAlert = () => {
+    dispatch({type: CLEAR_ALERT, payload: ''});
+  };
 
   return (
     <TodoContext.Provider
       value={{
         list: state.list,
         alert: state.alert,
+        editMode: state.editMode,
+        editItem: state.editItem,
+        setAlert,
         addTodo,
+        clearAlert,
+        editTodo,
         removeTodo,
         clearAll,
-        toggleImportant
+        toggleImportant,
+        addEditedTodo
       }}
     >
       {props.children}

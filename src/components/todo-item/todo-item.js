@@ -2,10 +2,15 @@ import React, {Fragment, useContext, useState} from 'react';
 import TodoContext from '../context/todo-context';
 import './todo-item.css';
 
-const TodoItem = ({task, id, completed}) => {
+const TodoItem = ({todo, id, important}) => {
   const todoContext = useContext(TodoContext);
   const {removeTodo, editTodo, toggleImportant} = todoContext;
   const [done, setDone] = useState(false);
+
+  const style = {
+    color: important ? '#a7ff83' : 'white',
+    fontWeight: important ? 'bold' : 'normal'
+  };
 
   return (
     <Fragment>
@@ -14,30 +19,31 @@ const TodoItem = ({task, id, completed}) => {
           onClick={() => {
             setDone(!done);
           }}
+          style={style}
         >
-          {task}
+          {todo}
         </span>
         <div>
           <button
             className='btn btnOutlineSecondary'
-            onClick={() => editTodo(task, id)}
+            onClick={() => editTodo(id)}
             title='edit'
           >
-            <i class='fas fa-pen'></i>
+            <i className='fas fa-pen'></i>
           </button>
           <button
             className='btn btnOutlineDanger'
             onClick={() => removeTodo(id)}
             title='delete'
           >
-            <i class='fas fa-trash-alt'></i>
+            <i className='fas fa-trash-alt'></i>
           </button>
           <button
             className='btn btnOutlinePrimary'
             onClick={() => toggleImportant(id)}
             title='mark important'
           >
-            <i class='fas fa-exclamation'></i>
+            <i className='fas fa-exclamation'></i>
           </button>
         </div>
       </li>

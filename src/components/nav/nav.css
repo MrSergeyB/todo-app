@@ -1,7 +1,8 @@
 .header h2 {
   color: #e2f3f5;
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   margin: 1em auto;
   font-family: 'Josefin Slab', serif;
+  font-size: 2em;
 }

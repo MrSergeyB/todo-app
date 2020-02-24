@@ -3,7 +3,7 @@ import './footer.css';
 
 const Footer = () => {
   return (
-    <footer class='footer'>
+    <footer className='footer'>
       <div>&copy; {new Date().getFullYear()} Coded By: Kei Blokhin</div>
     </footer>
   );

@@ -16,6 +16,7 @@
   color: #e2f3f5;
   background-color: #0e153a;
   border: 1px solid #e2f3f5;
+
   outline: none;
 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -49,11 +50,12 @@
   cursor: pointer;
 }
 
-.button {
-  margin: 0.5em;
-  padding: 0.5em;
-}
-
 .mainButtons {
   display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin: 0.3em;
+  padding: 0.5em;
 }
